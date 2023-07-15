@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """ class square """
 
+
 class square:
     def __init__(self, side_length):
         """
@@ -40,7 +41,7 @@ class square:
 
 
 if __name__ == "__main__":
-    s = square(side_length = 12)
+    s = square(side_length=12)
     print(s)
     print(s.area_of_my_square())
     print(s.PerimiterOfMySquare())
