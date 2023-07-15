@@ -2,19 +2,23 @@
 """
 Web server 
 """
+
+from flask import Blueprint, jsonify
 from api.v1.views import app_views
-from flask import Flask, jsonify, make_response
+from flask import Flask
 
 app = Flask(__name__)
+#app_views = Blueprint('app_views', __name__)
+
+
+@app_views.route('/api/v1/status', methods=['GET'])
+def get_status():
+    """Handler for /api/v1/status route"""
+    return jsonify({"status": "API is running"})
+
+
+# Other routes for your application...
+
+
+# Register the blueprint
 app.register_blueprint(app_views)
-
-
-@app.errorhandler(404)
-def not_found(error):
-    """ json 404 page """
-    return make_response(jsonify({"error": "Not found"}), 404)
-
-
-if __name__ == "__main__":
-    # python -m api.v1.app 
-    app.run(host="0.0.0.0", port=5000)
